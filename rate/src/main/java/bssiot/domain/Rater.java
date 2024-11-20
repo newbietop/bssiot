@@ -39,24 +39,13 @@ public class Rater {
 
     //<<< Clean Arch / Port Method
     public static void createRaterInfo(OrderCreated orderCreated) {
-        //implement business logic here:
 
-        /** Example 1:  new item 
         Rater rater = new Rater();
+
+        rater.setApnCd(orderCreated.getApnCd());
+        rater.setSvcContNo(orderCreated.getSvcContNo());
+
         repository().save(rater);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCreated.get???()).ifPresent(rater->{
-            
-            rater // do something
-            repository().save(rater);
-
-
-         });
-        */
 
     }
     //>>> Clean Arch / Port Method
