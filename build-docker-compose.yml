@@ -79,3 +79,17 @@ services:
       - ./settlement:/usr/src
       - ./maven-repo:/root/.m2
       
+  my page:
+    depends_on: 
+      - kafka
+    image: adoptopenjdk/maven-openjdk11:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    command: mvn spring-boot:run
+    ports:
+      - 8086:8086
+    working_dir: /usr/src
+    volumes:
+      - ./my page:/usr/src
+      - ./maven-repo:/root/.m2
+      

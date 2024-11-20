@@ -24,6 +24,7 @@ See the README.md files inside the each microservices directory:
 - rate
 - billing
 - settlement
+- my page
 
 
 ## Run API Gateway (Spring Gateway)
@@ -48,6 +49,9 @@ mvn spring-boot:run
 - settlement
 ```
  http :8088/settlements id="id" totalUseAmount="totalUseAmount" totalChargAmount="totalChargAmount" settleFileNm="settleFileNm" settleFilePath="settleFilePath" 
+```
+- my page
+```
 ```
 
 
