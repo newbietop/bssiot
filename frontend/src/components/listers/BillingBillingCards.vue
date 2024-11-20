@@ -104,14 +104,15 @@
             me.values = temp.data._embedded.billings;
             
             me.newValue = {
-                'chageAccount': 0,
+                'chargeAccount': 0,
                 'productCd': '',
                 'productTarif': 0,
                 'invoiceFileNm': '',
                 'invoiceFilePath': '',
                 'productNm': '',
-                'chargeAmount': '',
-                'useAmount': '',
+                'chargeAmount': 0,
+                'useAmount': 0,
+                'svcContNo': 0,
             }
         },
         methods:{

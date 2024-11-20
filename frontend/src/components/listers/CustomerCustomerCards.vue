@@ -111,6 +111,8 @@
                 'email': '',
                 'address': '',
                 'productNm': '',
+                'productTarif': 0,
+                'chargeAccount': 0,
             }
         },
         methods:{

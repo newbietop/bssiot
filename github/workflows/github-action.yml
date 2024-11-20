@@ -33,7 +33,7 @@ jobs:
           mvn clean package -f ./rate/pom.xml
           mvn clean package -f ./billing/pom.xml
           mvn clean package -f ./settlement/pom.xml
-          mvn clean package -f ./BoundedContext990/pom.xml
+          mvn clean package -f ./my page/pom.xml
 
       - name: Docker Build and push for Customer
         uses: docker/build-push-action@v4
@@ -75,13 +75,13 @@ jobs:
             ghcr.io/${{ github.repository }}/settlement:latest
             ghcr.io/${{ github.repository }}/settlement:${{ github.ref_name }}
             
-      - name: Docker Build and push for BoundedContext990
+      - name: Docker Build and push for MyPage
         uses: docker/build-push-action@v4
         with:
-          context: ./BoundedContext990
+          context: ./my page
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/boundedcontext990:latest
-            ghcr.io/${{ github.repository }}/boundedcontext990:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/my-page:latest
+            ghcr.io/${{ github.repository }}/my-page:${{ github.ref_name }}
             

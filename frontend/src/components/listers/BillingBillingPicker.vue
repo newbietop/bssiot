@@ -15,7 +15,7 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
-                                ChageAccount :  {{item.chageAccount }}
+                                ChargeAccount :  {{item.chargeAccount }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 ProductCd :  {{item.productCd }}
@@ -37,6 +37,9 @@
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 UseAmount :  {{item.useAmount }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                SvcContNo :  {{item.svcContNo }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -89,6 +92,8 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
                     
                     
                     

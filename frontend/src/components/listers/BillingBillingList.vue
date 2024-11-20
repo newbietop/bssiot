@@ -49,11 +49,12 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ ChageAccount :  {{data.chageAccount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ChargeAccount :  {{data.chargeAccount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ProductCd :  {{data.productCd }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ProductTarif :  {{data.productTarif }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ InvoiceFileNm :  {{data.invoiceFileNm }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -61,6 +62,7 @@
                             [ ProductNm :  {{data.productNm }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ChargeAmount :  {{data.chargeAmount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ UseAmount :  {{data.useAmount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ SvcContNo :  {{data.svcContNo }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -128,14 +130,15 @@
             this.values = temp.data._embedded.billings;
             
             this.newValue = {
-                'chageAccount': 0,
+                'chargeAccount': 0,
                 'productCd': '',
                 'productTarif': 0,
                 'invoiceFileNm': '',
                 'invoiceFilePath': '',
                 'productNm': '',
-                'chargeAmount': '',
-                'useAmount': '',
+                'chargeAmount': 0,
+                'useAmount': 0,
+                'svcContNo': 0,
             }
         },
         methods: {

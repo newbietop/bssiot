@@ -3,7 +3,6 @@ package bssiot.domain;
 import bssiot.BillingApplication;
 import bssiot.domain.Chargecalculated;
 import bssiot.domain.InvoiceCreated;
-import bssiot.domain.Prodchanged;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Billing {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer chageAccount;
+    private Integer chargeAccount;
 
     private String productCd;
 
@@ -32,9 +31,11 @@ public class Billing {
 
     private String productNm;
 
-    private String chargeAmount;
+    private Long chargeAmount;
 
-    private String useAmount;
+    private Long useAmount;
+
+    private Integer svcContNo;
 
     @PostPersist
     public void onPostPersist() {
@@ -43,9 +44,6 @@ public class Billing {
 
         InvoiceCreated invoiceCreated = new InvoiceCreated(this);
         invoiceCreated.publishAfterCommit();
-
-        Prodchanged prodchanged = new Prodchanged(this);
-        prodchanged.publishAfterCommit();
     }
 
     public static BillingRepository repository() {

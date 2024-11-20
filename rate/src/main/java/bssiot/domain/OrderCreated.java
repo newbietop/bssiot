@@ -17,4 +17,6 @@ public class OrderCreated extends AbstractEvent {
     private String address;
     private String productNm;
     private String svcContStatus;
+    private Integer productTarif;
+    private Integer chargeAccount;
 }

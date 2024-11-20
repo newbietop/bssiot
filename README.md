@@ -24,7 +24,7 @@ See the README.md files inside the each microservices directory:
 - rate
 - billing
 - settlement
-- BoundedContext990
+- my page
 
 
 ## Run API Gateway (Spring Gateway)
@@ -36,7 +36,7 @@ mvn spring-boot:run
 ## Test by API
 - customer
 ```
- http :8088/customers id="id" customerId="customerId" productCd="productCd" svcContStatus="svcContStatus" svcContNo="svcContNo" email="email" address="address" productNm="productNm" 
+ http :8088/customers id="id" customerId="customerId" productCd="productCd" svcContStatus="svcContStatus" svcContNo="svcContNo" email="email" address="address" productNm="productNm" productTarif="productTarif" chargeAccount="chargeAccount" 
 ```
 - rate
 ```
@@ -44,13 +44,13 @@ mvn spring-boot:run
 ```
 - billing
 ```
- http :8088/billings id="id" chageAccount="chageAccount" productCd="productCd" productTarif="productTarif" invoiceFileNm="invoiceFileNm" invoiceFilePath="invoiceFilePath" productNm="productNm" chargeAmount="chargeAmount" useAmount="useAmount" 
+ http :8088/billings id="id" chargeAccount="chargeAccount" productCd="productCd" productTarif="productTarif" invoiceFileNm="invoiceFileNm" invoiceFilePath="invoiceFilePath" productNm="productNm" chargeAmount="chargeAmount" useAmount="useAmount" svcContNo="svcContNo" 
 ```
 - settlement
 ```
  http :8088/settlements id="id" totalUseAmount="totalUseAmount" totalChargAmount="totalChargAmount" settleFileNm="settleFileNm" settleFilePath="settleFilePath" 
 ```
-- BoundedContext990
+- my page
 ```
 ```
 

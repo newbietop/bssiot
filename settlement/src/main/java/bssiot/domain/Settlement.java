@@ -18,9 +18,9 @@ public class Settlement {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer totalUseAmount;
+    private Long totalUseAmount;
 
-    private Integer totalChargAmount;
+    private Long totalChargAmount;
 
     private String settleFileNm;
 

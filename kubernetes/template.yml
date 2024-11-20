@@ -163,22 +163,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: BoundedContext990
+  name: my page
   labels:
-    app: BoundedContext990
+    app: my page
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: BoundedContext990
+      app: my page
   template:
     metadata:
       labels:
-        app: BoundedContext990
+        app: my page
     spec:
       containers:
-        - name: BoundedContext990
-          image: username/BoundedContext990:latest
+        - name: my page
+          image: username/my page:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -273,13 +273,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: BoundedContext990
+  name: my page
   labels:
-    app: BoundedContext990
+    app: my page
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: BoundedContext990
+    app: my page
 
