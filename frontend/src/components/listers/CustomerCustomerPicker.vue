@@ -41,6 +41,9 @@
                             <v-list-item-subtitle>
                                 ChargeAccount :  {{item.chargeAccount }}
                             </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ApnCd :  {{item.apnCd }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -92,6 +95,8 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
                     
                     
                     

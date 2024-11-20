@@ -76,6 +76,7 @@
                     { text: "productNm", value: "productNm" },
                     { text: "productTarif", value: "productTarif" },
                     { text: "chargeAccount", value: "chargeAccount" },
+                    { text: "apnCd", value: "apnCd" },
                 ],
             customer : [],
             newValue: {},
@@ -102,6 +103,7 @@
                 'productNm': '',
                 'productTarif': 0,
                 'chargeAccount': 0,
+                'apnCd': '',
             }
         },
         methods: {

@@ -36,7 +36,7 @@ mvn spring-boot:run
 ## Test by API
 - customer
 ```
- http :8088/customers id="id" customerId="customerId" productCd="productCd" svcContStatus="svcContStatus" svcContNo="svcContNo" email="email" address="address" productNm="productNm" productTarif="productTarif" chargeAccount="chargeAccount" 
+ http :8088/customers id="id" customerId="customerId" productCd="productCd" svcContStatus="svcContStatus" svcContNo="svcContNo" email="email" address="address" productNm="productNm" productTarif="productTarif" chargeAccount="chargeAccount" apnCd="apnCd" 
 ```
 - rate
 ```
