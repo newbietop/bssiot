@@ -37,6 +37,8 @@ public class Customer {
 
     private Integer chargeAccount;
 
+    private String apnCd;
+
     @PostPersist
     public void onPostPersist() {
         OrderCreated orderCreated = new OrderCreated(this);

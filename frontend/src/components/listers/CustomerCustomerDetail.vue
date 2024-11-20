@@ -32,6 +32,9 @@
             <div>
                 <Number label="ChargeAccount" v-model="item.chargeAccount" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <String label="ApnCd" v-model="item.apnCd" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>
