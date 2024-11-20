@@ -50,5 +50,16 @@ public class Rater {
     }
     //>>> Clean Arch / Port Method
 
+    public static void auAdd(Rated rated) {
+  
+        repository().findById(rated.getId()).ifPresent(rater->{
+            
+            System.out.println(rated.getUseAmount() + rater.getUseAmount()+"////");
+            rater.setUseAmount(rated.getUseAmount() + rater.getUseAmount());
+            repository().save(rater);
+
+         });
+
+    }
 }
 //>>> DDD / Aggregate Root

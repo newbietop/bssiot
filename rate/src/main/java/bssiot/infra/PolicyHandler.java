@@ -38,5 +38,17 @@ public class PolicyHandler {
         // Sample Logic //
         Rater.createRaterInfo(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='Rated'"
+    )
+    public void wheneverRated_AuAdd(@Payload Rated rated) {
+        Rated event = rated;
+        System.out.println("\n\n##### listener AuAdd : " + rated + "\n\n");
+
+        // Sample Logic //
+        Rater.auAdd(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor
