@@ -12,6 +12,8 @@ www.msaez.io/#/188553381/storming/bssiot-prj
 
 목차 정리 필요
 
+## 클라우드 아키텍쳐 설계
+
 
 ## 서비스 시나리오
 
@@ -41,4 +43,79 @@ www.msaez.io/#/188553381/storming/bssiot-prj
 4. au마감을 진행하였을때 요금계산이 정상으로 진행되는가?(ok)
 5. 요금계산이 정상으로 진행될때 청구서 생성이 정상으로 진행되는가?(ok)
 6. 청구서 생성이 완료되면 정산팀으로 해당 데이터를 정상 전송하는가?(ok)
+
+
+## MSA 개발 또는 역량 관리
+### 분산 트랜잭션
+OrderCreated되면 각각의 서비스인  rate_info와 bill_info가 생성되야한다.
+
+하기는  Order aggregate의 모습이다. 해당 데이터가 GateWay를 통해 customer 서비스에서 생성되면 rate의 wheneverOrderCreated_CreateRaterInfo를 통해 rate aggregate가 신규로 생성된다.
+동일하게 billing의 wheneverOrderCreated_CreateChargeInfo를 통해서도 신규로 생성된다.
+```
+package bssiot.domain;
+
+import bssiot.CustomerApplication;
+import bssiot.domain.OrderChaged;
+import bssiot.domain.OrderCreated;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "Customer_table")
+@Data
+//<<< DDD / Aggregate Root
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String customerId;
+
+    private String productCd;
+
+    private String svcContStatus;
+
+    private Integer svcContNo;
+
+    private String email;
+
+    private String address;
+
+    private String productNm;
+
+    private Integer productTarif;
+
+    private Integer chargeAccount;
+
+    private String apnCd;
+
+    @PostPersist
+    public void onPostPersist() {
+        OrderCreated orderCreated = new OrderCreated(this);
+        orderCreated.publishAfterCommit();
+
+        OrderChaged orderChaged = new OrderChaged(this);
+        orderChaged.publishAfterCommit();
+    }
+
+    public static CustomerRepository repository() {
+        CustomerRepository customerRepository = CustomerApplication.applicationContext.getBean(
+            CustomerRepository.class
+        );
+        return customerRepository;
+    }
+}
+//>>> DDD / Aggregate Root
+
+```
+![image](https://github.com/newbietop/bssiot/blob/main/saga%201.PNG) -> gateway를 통해 신규 고객 생성
+![image](https://github.com/newbietop/bssiot/blob/main/saga2.PNG) -> rater서비스에 신규 생성된 정보 확인
+![image](https://github.com/newbietop/bssiot/blob/main/saga3.PNG) -> billing서비스에 신규 생성된 정보 확인
+
+
+
 
