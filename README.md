@@ -112,9 +112,14 @@ public class Customer {
 //>>> DDD / Aggregate Root
 
 ```
-![image](https://github.com/newbietop/bssiot/blob/main/saga%201.PNG) -> gateway를 통해 신규 고객 생성
-![image](https://github.com/newbietop/bssiot/blob/main/saga2.PNG) -> rater서비스에 신규 생성된 정보 확인
-![image](https://github.com/newbietop/bssiot/blob/main/saga3.PNG) -> billing서비스에 신규 생성된 정보 확인
+![image](https://github.com/newbietop/bssiot/blob/main/saga%201.PNG) 
+-> gateway를 통해 신규 고객 생성
+
+![image](https://github.com/newbietop/bssiot/blob/main/saga2.PNG) 
+-> rater서비스에 신규 생성된 정보 확인
+
+![image](https://github.com/newbietop/bssiot/blob/main/saga3.PNG) 
+-> billing서비스에 신규 생성된 정보 확인
 
 
 
