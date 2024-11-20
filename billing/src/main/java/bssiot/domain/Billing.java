@@ -1,0 +1,139 @@
+package bssiot.domain;
+
+import bssiot.BillingApplication;
+import bssiot.domain.Chargecalculated;
+import bssiot.domain.InvoiceCreated;
+import bssiot.domain.Prodchanged;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "Billing_table")
+@Data
+//<<< DDD / Aggregate Root
+public class Billing {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private Integer chageAccount;
+
+    private String productCd;
+
+    private Integer productTarif;
+
+    private String invoiceFileNm;
+
+    private String invoiceFilePath;
+
+    private String productNm;
+
+    private String chargeAmount;
+
+    private String useAmount;
+
+    @PostPersist
+    public void onPostPersist() {
+        Chargecalculated chargecalculated = new Chargecalculated(this);
+        chargecalculated.publishAfterCommit();
+
+        InvoiceCreated invoiceCreated = new InvoiceCreated(this);
+        invoiceCreated.publishAfterCommit();
+
+        Prodchanged prodchanged = new Prodchanged(this);
+        prodchanged.publishAfterCommit();
+    }
+
+    public static BillingRepository repository() {
+        BillingRepository billingRepository = BillingApplication.applicationContext.getBean(
+            BillingRepository.class
+        );
+        return billingRepository;
+    }
+
+    //<<< Clean Arch / Port Method
+    public static void createChargeInfo(OrderCreated orderCreated) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Billing billing = new Billing();
+        repository().save(billing);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderCreated.get???()).ifPresent(billing->{
+            
+            billing // do something
+            repository().save(billing);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void chargeCalculating(Aumoved aumoved) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Billing billing = new Billing();
+        repository().save(billing);
+
+        Chargecalculated chargecalculated = new Chargecalculated(billing);
+        chargecalculated.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(aumoved.get???()).ifPresent(billing->{
+            
+            billing // do something
+            repository().save(billing);
+
+            Chargecalculated chargecalculated = new Chargecalculated(billing);
+            chargecalculated.publishAfterCommit();
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void createInvoice(Chargecalculated chargecalculated) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Billing billing = new Billing();
+        repository().save(billing);
+
+        InvoiceCreated invoiceCreated = new InvoiceCreated(billing);
+        invoiceCreated.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(chargecalculated.get???()).ifPresent(billing->{
+            
+            billing // do something
+            repository().save(billing);
+
+            InvoiceCreated invoiceCreated = new InvoiceCreated(billing);
+            invoiceCreated.publishAfterCommit();
+
+         });
+        */
+
+    }
+    //>>> Clean Arch / Port Method
+
+}
+//>>> DDD / Aggregate Root
