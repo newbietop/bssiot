@@ -55,25 +55,15 @@ public class Billing {
 
     //<<< Clean Arch / Port Method
     public static void createChargeInfo(OrderCreated orderCreated) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
         Billing billing = new Billing();
+
+        billing.setProductCd(orderCreated.getProductCd());
+        billing.setProductNm(orderCreated.getProductNm());
+        billing.setChargeAccount(orderCreated.getChargeAccount());
+        billing.setProductTarif(orderCreated.getProductTarif());
+        billing.setSvcContNo(orderCreated.getSvcContNo());
+
         repository().save(billing);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCreated.get???()).ifPresent(billing->{
-            
-            billing // do something
-            repository().save(billing);
-
-
-         });
-        */
-
     }
 
     //>>> Clean Arch / Port Method
