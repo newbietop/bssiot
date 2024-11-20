@@ -61,5 +61,33 @@ public class Rater {
          });
 
     }
+
+    //<<< Clean Arch / Port Method
+    public static void orderChagned(OrderCancel orderCancel) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Rater rater = new Rater();
+        repository().save(rater);
+
+        RaterUnused raterUnused = new RaterUnused(rater);
+        raterUnused.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderCancel.get???()).ifPresent(rater->{
+            
+            rater // do something
+            repository().save(rater);
+
+            RaterUnused raterUnused = new RaterUnused(rater);
+            raterUnused.publishAfterCommit();
+
+         });
+        */
+
+    }
+    //>>> Clean Arch / Port Method
 }
 //>>> DDD / Aggregate Root

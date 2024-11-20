@@ -50,5 +50,21 @@ public class PolicyHandler {
         // Sample Logic //
         Rater.auAdd(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderCancel'"
+    )
+    public void wheneverOrderCancel_OrderChagned(
+        @Payload OrderCancel orderCancel
+    ) {
+        OrderCancel event = orderCancel;
+        System.out.println(
+            "\n\n##### listener OrderChagned : " + orderCancel + "\n\n"
+        );
+
+        // Sample Logic //
+        Rater.orderChagned(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

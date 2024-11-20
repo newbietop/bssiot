@@ -1,7 +1,7 @@
 package bssiot.domain;
 
 import bssiot.CustomerApplication;
-import bssiot.domain.OrderChaged;
+import bssiot.domain.OrderCancel;
 import bssiot.domain.OrderCreated;
 import java.time.LocalDate;
 import java.util.Date;
@@ -44,8 +44,8 @@ public class Customer {
         OrderCreated orderCreated = new OrderCreated(this);
         orderCreated.publishAfterCommit();
 
-        OrderChaged orderChaged = new OrderChaged(this);
-        orderChaged.publishAfterCommit();
+        OrderCancel orderCancle = new OrderCancel(this);
+        orderCancle.publishAfterCommit();
     }
 
     public static CustomerRepository repository() {
@@ -54,5 +54,28 @@ public class Customer {
         );
         return customerRepository;
     }
+
+    public static void raterUnuse(RaterUnused raterUnused) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Customer customer = new Customer();
+        repository().save(customer);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(raterUnused.get???()).ifPresent(customer->{
+            
+            customer // do something
+            repository().save(customer);
+
+
+         });
+        */
+
+    }
+    //>>> Clean Arch / Port Method
 }
 //>>> DDD / Aggregate Root
