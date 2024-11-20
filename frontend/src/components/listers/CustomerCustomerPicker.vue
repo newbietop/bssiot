@@ -35,6 +35,12 @@
                             <v-list-item-subtitle>
                                 ProductNm :  {{item.productNm }}
                             </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ProductTarif :  {{item.productTarif }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ChargeAccount :  {{item.chargeAccount }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -86,6 +92,10 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
+                    
+                    
                     
                     
                     

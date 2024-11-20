@@ -22,21 +22,5 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='Prodchanged'"
-    )
-    public void wheneverProdchanged_ChageProd(
-        @Payload Prodchanged prodchanged
-    ) {
-        Prodchanged event = prodchanged;
-        System.out.println(
-            "\n\n##### listener ChageProd : " + prodchanged + "\n\n"
-        );
-
-        // Sample Logic //
-        Customer.chageProd(event);
-    }
 }
 //>>> Clean Arch / Inbound Adaptor

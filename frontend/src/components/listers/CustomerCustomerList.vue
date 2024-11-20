@@ -48,6 +48,8 @@
                             
                             
                             
+                            
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -59,6 +61,8 @@
                             [ Email :  {{data.email }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Address :  {{data.address }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ProductNm :  {{data.productNm }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ProductTarif :  {{data.productTarif }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ChargeAccount :  {{data.chargeAccount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -133,6 +137,8 @@
                 'email': '',
                 'address': '',
                 'productNm': '',
+                'productTarif': 0,
+                'chargeAccount': 0,
             }
         },
         methods: {

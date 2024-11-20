@@ -26,6 +26,12 @@
             <div>
                 <String label="ProductNm" v-model="item.productNm" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <Number label="ProductTarif" v-model="item.productTarif" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="ChargeAccount" v-model="item.chargeAccount" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

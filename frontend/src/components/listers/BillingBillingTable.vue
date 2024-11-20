@@ -67,7 +67,7 @@
             headers: 
                 [
                     { text: "id", value: "id" },
-                    { text: "chageAccount", value: "chageAccount" },
+                    { text: "chargeAccount", value: "chargeAccount" },
                     { text: "productCd", value: "productCd" },
                     { text: "productTarif", value: "productTarif" },
                     { text: "invoiceFileNm", value: "invoiceFileNm" },
@@ -92,14 +92,14 @@
             this.values = temp.data._embedded.billings;
 
             this.newValue = {
-                'chageAccount': 0,
+                'chargeAccount': 0,
                 'productCd': '',
                 'productTarif': 0,
                 'invoiceFileNm': '',
                 'invoiceFilePath': '',
                 'productNm': '',
-                'chargeAmount': '',
-                'useAmount': '',
+                'chargeAmount': 0,
+                'useAmount': 0,
             }
         },
         methods: {

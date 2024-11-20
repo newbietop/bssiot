@@ -158,46 +158,6 @@ spec:
             periodSeconds: 5
             failureThreshold: 5
 
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: BoundedContext990
-  labels:
-    app: BoundedContext990
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: BoundedContext990
-  template:
-    metadata:
-      labels:
-        app: BoundedContext990
-    spec:
-      containers:
-        - name: BoundedContext990
-          image: username/BoundedContext990:latest
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 10
-          livenessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 120
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 5
-
 
 ---
 
@@ -265,21 +225,4 @@ spec:
       targetPort: 8080
   selector:
     app: settlement
-
-
----
-
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: BoundedContext990
-  labels:
-    app: BoundedContext990
-spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-  selector:
-    app: BoundedContext990
 

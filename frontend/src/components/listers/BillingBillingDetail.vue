@@ -6,7 +6,7 @@
 
         <v-card-text>
             <div>
-                <Number label="ChageAccount" v-model="item.chageAccount" :editMode="editMode" @change="change" />
+                <Number label="ChargeAccount" v-model="item.chargeAccount" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <String label="ProductCd" v-model="item.productCd" :editMode="editMode" @change="change" />
@@ -24,10 +24,10 @@
                 <String label="ProductNm" v-model="item.productNm" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="ChargeAmount" v-model="item.chargeAmount" :editMode="editMode" @change="change" />
+                <Number label="ChargeAmount" v-model="item.chargeAmount" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="UseAmount" v-model="item.useAmount" :editMode="editMode" @change="change" />
+                <Number label="UseAmount" v-model="item.useAmount" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
 

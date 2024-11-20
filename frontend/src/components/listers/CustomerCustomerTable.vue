@@ -74,6 +74,8 @@
                     { text: "email", value: "email" },
                     { text: "address", value: "address" },
                     { text: "productNm", value: "productNm" },
+                    { text: "productTarif", value: "productTarif" },
+                    { text: "chargeAccount", value: "chargeAccount" },
                 ],
             customer : [],
             newValue: {},
@@ -98,6 +100,8 @@
                 'email': '',
                 'address': '',
                 'productNm': '',
+                'productTarif': 0,
+                'chargeAccount': 0,
             }
         },
         methods: {

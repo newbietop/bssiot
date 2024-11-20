@@ -15,7 +15,7 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
-                                ChageAccount :  {{item.chageAccount }}
+                                ChargeAccount :  {{item.chargeAccount }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 ProductCd :  {{item.productCd }}

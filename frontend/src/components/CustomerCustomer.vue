@@ -23,6 +23,8 @@
             <String label="Email" v-model="value.email" :editMode="editMode" :inputUI="''"/>
             <String label="Address" v-model="value.address" :editMode="editMode" :inputUI="''"/>
             <String label="ProductNm" v-model="value.productNm" :editMode="editMode" :inputUI="''"/>
+            <Number label="ProductTarif" v-model="value.productTarif" :editMode="editMode" :inputUI="''"/>
+            <Number label="ChargeAccount" v-model="value.chargeAccount" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

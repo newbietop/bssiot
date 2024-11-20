@@ -16,14 +16,14 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
-            <Number label="ChageAccount" v-model="value.chageAccount" :editMode="editMode" :inputUI="''"/>
+            <Number label="ChargeAccount" v-model="value.chargeAccount" :editMode="editMode" :inputUI="''"/>
             <String label="ProductCd" v-model="value.productCd" :editMode="editMode" :inputUI="''"/>
             <Number label="ProductTarif" v-model="value.productTarif" :editMode="editMode" :inputUI="''"/>
             <String label="InvoiceFileNm" v-model="value.invoiceFileNm" :editMode="editMode" :inputUI="''"/>
             <String label="InvoiceFilePath" v-model="value.invoiceFilePath" :editMode="editMode" :inputUI="''"/>
             <String label="ProductNm" v-model="value.productNm" :editMode="editMode" :inputUI="''"/>
-            <String label="ChargeAmount" v-model="value.chargeAmount" :editMode="editMode" :inputUI="''"/>
-            <String label="UseAmount" v-model="value.useAmount" :editMode="editMode" :inputUI="''"/>
+            <Number label="ChargeAmount" v-model="value.chargeAmount" :editMode="editMode" :inputUI="''"/>
+            <Number label="UseAmount" v-model="value.useAmount" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">
@@ -42,7 +42,7 @@
                     text
                     @click="save"
                 >
-                    ProdChange
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"

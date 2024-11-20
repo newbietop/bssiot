@@ -33,6 +33,10 @@ public class Customer {
 
     private String productNm;
 
+    private Integer productTarif;
+
+    private Integer chargeAccount;
+
     @PostPersist
     public void onPostPersist() {
         OrderCreated orderCreated = new OrderCreated(this);
@@ -48,30 +52,5 @@ public class Customer {
         );
         return customerRepository;
     }
-
-    //<<< Clean Arch / Port Method
-    public static void chageProd(Prodchanged prodchanged) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Customer customer = new Customer();
-        repository().save(customer);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(prodchanged.get???()).ifPresent(customer->{
-            
-            customer // do something
-            repository().save(customer);
-
-
-         });
-        */
-
-    }
-    //>>> Clean Arch / Port Method
-
 }
 //>>> DDD / Aggregate Root

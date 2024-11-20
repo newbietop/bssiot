@@ -19,6 +19,8 @@ public class OrderChaged extends AbstractEvent {
     private String email;
     private String address;
     private String productNm;
+    private Integer productTarif;
+    private Integer chargeAccount;
 
     public OrderChaged(Customer aggregate) {
         super(aggregate);
