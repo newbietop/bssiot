@@ -75,6 +75,7 @@
                     { text: "productNm", value: "productNm" },
                     { text: "chargeAmount", value: "chargeAmount" },
                     { text: "useAmount", value: "useAmount" },
+                    { text: "svcContNo", value: "svcContNo" },
                 ],
             billing : [],
             newValue: {},
@@ -100,6 +101,7 @@
                 'productNm': '',
                 'chargeAmount': 0,
                 'useAmount': 0,
+                'svcContNo': 0,
             }
         },
         methods: {

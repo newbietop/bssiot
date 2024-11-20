@@ -24,6 +24,7 @@
             <String label="ProductNm" v-model="value.productNm" :editMode="editMode" :inputUI="''"/>
             <Number label="ChargeAmount" v-model="value.chargeAmount" :editMode="editMode" :inputUI="''"/>
             <Number label="UseAmount" v-model="value.useAmount" :editMode="editMode" :inputUI="''"/>
+            <Number label="SvcContNo" v-model="value.svcContNo" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

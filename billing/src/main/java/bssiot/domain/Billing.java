@@ -35,6 +35,8 @@ public class Billing {
 
     private Long useAmount;
 
+    private Integer svcContNo;
+
     @PostPersist
     public void onPostPersist() {
         Chargecalculated chargecalculated = new Chargecalculated(this);

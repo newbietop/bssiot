@@ -49,6 +49,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -61,6 +62,7 @@
                             [ ProductNm :  {{data.productNm }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ChargeAmount :  {{data.chargeAmount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ UseAmount :  {{data.useAmount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ SvcContNo :  {{data.svcContNo }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -136,6 +138,7 @@
                 'productNm': '',
                 'chargeAmount': 0,
                 'useAmount': 0,
+                'svcContNo': 0,
             }
         },
         methods: {

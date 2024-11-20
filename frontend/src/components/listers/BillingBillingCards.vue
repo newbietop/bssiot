@@ -112,6 +112,7 @@
                 'productNm': '',
                 'chargeAmount': 0,
                 'useAmount': 0,
+                'svcContNo': 0,
             }
         },
         methods:{

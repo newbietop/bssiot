@@ -43,7 +43,7 @@ mvn spring-boot:run
 ```
 - billing
 ```
- http :8088/billings id="id" chargeAccount="chargeAccount" productCd="productCd" productTarif="productTarif" invoiceFileNm="invoiceFileNm" invoiceFilePath="invoiceFilePath" productNm="productNm" chargeAmount="chargeAmount" useAmount="useAmount" 
+ http :8088/billings id="id" chargeAccount="chargeAccount" productCd="productCd" productTarif="productTarif" invoiceFileNm="invoiceFileNm" invoiceFilePath="invoiceFilePath" productNm="productNm" chargeAmount="chargeAmount" useAmount="useAmount" svcContNo="svcContNo" 
 ```
 - settlement
 ```

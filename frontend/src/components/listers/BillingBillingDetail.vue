@@ -29,6 +29,9 @@
             <div>
                 <Number label="UseAmount" v-model="item.useAmount" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <Number label="SvcContNo" v-model="item.svcContNo" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>
