@@ -3,94 +3,42 @@
 ## Model
 www.msaez.io/#/188553381/storming/bssiot-prj
 
-## Before Running Services
-### Make sure there is a Kafka server running
-```
-cd kafka
-docker-compose up
-```
-- Check the Kafka messages:
-```
-cd infra
-docker-compose exec -it kafka /bin/bash
-cd /bin
-./kafka-console-consumer --bootstrap-server localhost:9092 --topic
-```
+## 예제
+### BSS-IoT(빌링시스템)
 
-## Run the backend micro-services
-See the README.md files inside the each microservices directory:
+본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
 
-- customer
-- rate
-- billing
-- settlement
-- my page
+## Table of contents
+
+목차 정리 필요
 
 
-## Run API Gateway (Spring Gateway)
-```
-cd gateway
-mvn spring-boot:run
-```
+## 서비스 시나리오
 
-## Test by API
-- customer
-```
- http :8088/customers id="id" customerId="customerId" productCd="productCd" svcContStatus="svcContStatus" svcContNo="svcContNo" email="email" address="address" productNm="productNm" productTarif="productTarif" chargeAccount="chargeAccount" apnCd="apnCd" 
-```
-- rate
-```
- http :8088/raters id="id" svcContNo="svcContNo" apnCd="apnCd" useAmount="useAmount" 
-```
-- billing
-```
- http :8088/billings id="id" chargeAccount="chargeAccount" productCd="productCd" productTarif="productTarif" invoiceFileNm="invoiceFileNm" invoiceFilePath="invoiceFilePath" productNm="productNm" chargeAmount="chargeAmount" useAmount="useAmount" svcContNo="svcContNo" 
-```
-- settlement
-```
- http :8088/settlements id="id" totalUseAmount="totalUseAmount" totalChargAmount="totalChargAmount" settleFileNm="settleFileNm" settleFilePath="settleFilePath" 
-```
-- my page
-```
-```
+기능적 요구사항
+1. 고객이 외부 웹 사이트를 통해 단말기 회선의 오더를 요청한다
+    1. 오더에는 개통,정지,정지복구,해지,해지복구가 있다.
+    1. 오더 상태가 변경될때마다 고객에서 sms를 전송한다.
+    1. 고객은 회선 상태를 조회 및 변경할 수 있다.
+    1. 고객이 신규 개통하면 레이터팀과 빌링팀에 새로운 정보를 생성한다. 
+2. 개통이 되면 과금 파일이 들어오면 해당 고객정보를 찾아 레이팅을 하여 데이터 사용량을 누적한다.
+3. 사용량이 누적되면 월 말마다 과금팀이 AU 마감을 통해 Moved되면 해당 누적 사용량이 빌링팀으로 전달된다.
+    1. 사용량 누적된 데이터가 전달되면 빌링팀은 요금 계산을 진행한다. 
+4. 계산이 끝난 요금들은 확정된 요금들이며 고객들에게 청구서를 만들어 제공한다.
+5. 청구서까지 제공되면 정산팀에 데이터를 전달하여 월 총 사용량 및 총 요금을 정산한다.
+6. 해당 문서는 고객 및 사업부서에 메일로 전달한다.
 
 
-## Run the frontend
-```
-cd frontend
-npm i
-npm run serve
-```
+## 이벤트 스토밍 
 
-## Test by UI
-Open a browser to localhost:8088
+완성된 모형
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EC%8A%A4%ED%86%A0%EB%B0%8D1.PNG)
 
-## Required Utilities
-
-- httpie (alternative for curl / POSTMAN) and network utils
-```
-sudo apt-get update
-sudo apt-get install net-tools
-sudo apt install iputils-ping
-pip install httpie
-```
-
-- kubernetes utilities (kubectl)
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
-
-- aws cli (aws)
-```
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-- eksctl 
-```
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-```
+모형 검증
+1. 고객이 개통을 하면 rate팀과 billing팀에도 신규 info정보가 생성되는가?(ok)
+2. 고객이 직접 조회 및 회선 상태 변경이 가능한가?(ok)
+3. 해당 apncd가 아닌 다른 apncd일시 과금이 누적되지 않는가?(ok)
+4. au마감을 진행하였을때 요금계산이 정상으로 진행되는가?(ok)
+5. 요금계산이 정상으로 진행될때 청구서 생성이 정상으로 진행되는가?(ok)
+6. 청구서 생성이 완료되면 정산팀으로 해당 데이터를 정상 전송하는가?(ok)
 
