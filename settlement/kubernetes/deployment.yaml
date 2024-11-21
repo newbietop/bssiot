@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: settlement
-          image: "username/settlement:latest"
+          image: "newbietop/settlement:1121"
           ports:
             - containerPort: 8080
           readinessProbe:
