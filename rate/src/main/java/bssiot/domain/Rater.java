@@ -24,6 +24,8 @@ public class Rater {
 
     private Long useAmount;
 
+    private String useYn;
+
     @PostPersist
     public void onPostPersist() {
         Aumoved aumoved = new Aumoved(this);
@@ -44,6 +46,7 @@ public class Rater {
 
         rater.setApnCd(orderCreated.getApnCd());
         rater.setSvcContNo(orderCreated.getSvcContNo());
+        rater.setUseYn("Y");
 
         repository().save(rater);
 
@@ -64,28 +67,11 @@ public class Rater {
 
     //<<< Clean Arch / Port Method
     public static void orderChagned(OrderCancel orderCancel) {
-        //implement business logic here:
 
-        /** Example 1:  new item 
-        Rater rater = new Rater();
-        repository().save(rater);
-
-        RaterUnused raterUnused = new RaterUnused(rater);
-        raterUnused.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCancel.get???()).ifPresent(rater->{
-            
-            rater // do something
-            repository().save(rater);
-
-            RaterUnused raterUnused = new RaterUnused(rater);
-            raterUnused.publishAfterCommit();
-
+         repository().findById(orderCancel.getId()).ifPresent(rater->{
+                rater.setUseYn("N");
+                repository().save(rater);
          });
-        */
 
     }
     //>>> Clean Arch / Port Method

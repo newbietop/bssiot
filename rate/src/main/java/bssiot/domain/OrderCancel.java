@@ -13,4 +13,5 @@ public class OrderCancel extends AbstractEvent {
     private String svcContStatus;
     private Integer svcContNo;
     private String apnCd;
+    private String useYn;
 }

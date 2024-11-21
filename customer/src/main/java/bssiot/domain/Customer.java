@@ -1,11 +1,7 @@
 package bssiot.domain;
 
 import bssiot.CustomerApplication;
-import bssiot.domain.OrderCancel;
 import bssiot.domain.OrderCreated;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
@@ -43,9 +39,6 @@ public class Customer {
     public void onPostPersist() {
         OrderCreated orderCreated = new OrderCreated(this);
         orderCreated.publishAfterCommit();
-
-        OrderCancel orderCancle = new OrderCancel(this);
-        orderCancle.publishAfterCommit();
     }
 
     public static CustomerRepository repository() {
@@ -55,27 +48,20 @@ public class Customer {
         return customerRepository;
     }
 
-    public static void raterUnuse(RaterUnused raterUnused) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Customer customer = new Customer();
-        repository().save(customer);
-
-        */
-
-        /** Example 2:  finding and process
+    public static void orderCancel(OrderCancelCommand orderCancelCommand) {
         
-        repository().findById(raterUnused.get???()).ifPresent(customer->{
-            
-            customer // do something
-            repository().save(customer);
+        System.out.println("check point2");
+        
+        repository().findById(orderCancelCommand.getId()).ifPresent(customer->{
+                customer.setSvcContStatus("해지");
+                repository().save(customer);
 
-
+                OrderCancel orderCancel = new OrderCancel(customer);
+                orderCancel.publishAfterCommit();
          });
-        */
 
     }
+
     //>>> Clean Arch / Port Method
 }
 //>>> DDD / Aggregate Root

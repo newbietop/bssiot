@@ -10,8 +10,14 @@ import org.springframework.stereotype.Component;
 public class CustomerHateoasProcessor
     implements RepresentationModelProcessor<EntityModel<Customer>> {
 
-    @Override
-    public EntityModel<Customer> process(EntityModel<Customer> model) {
-        return model;
-    }
+        @Override
+        public EntityModel<Customer> process(EntityModel<Customer> model) {
+            model.add(
+                Link
+                    .of(model.getRequiredLink("self").getHref() + "/ordercancel")
+                    .withRel("ordercancel")
+            );
+    
+            return model;
+        }
 }
