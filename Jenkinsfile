@@ -8,7 +8,7 @@ pipeline {
         RESOURCE_GROUP = 'user04-rsrcgrp'
         AKS_NAMESPACE = 'default'
         AZURE_CREDENTIALS_ID = 'Azure-Cred'
-        TENANT_ID = '29d166ad-94ec-45cb-9f65-561c038e1c7a'
+        TENANT_ID = '29d166ad-94ec-45cb-9f65-561c038e1c7a' 
     }
 
     stages {
