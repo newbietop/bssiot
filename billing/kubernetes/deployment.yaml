@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: billing
-          image: "username/billing:latest"
+          image: "newbietop/billing:1121"
           ports:
             - containerPort: 8080
           readinessProbe:
