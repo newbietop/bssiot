@@ -121,6 +121,84 @@ public class Customer {
 ![image](https://github.com/newbietop/bssiot/blob/main/saga3.PNG) 
 -> billing서비스에 신규 생성된 정보 확인
 
+### 보상처리-compensation
+
+고객팀에 신규 회선 가입자가 해지를 요청한 상태에서 한번 더 해지를 요청하면 rater의 useYn을 보고 회선의 상태를 이미 해지됨 상태로 변경함
+
+1.신규 회선 가입자
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC1.PNG)
+
+2.고객 및 rater팀 확인
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC2.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC3.PNG)
+
+3.첫 해지 요청
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC4.PNG)
+
+4.두번째 해지 요청시 회선 상태 확인
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC5.PNG)
+
+5.kafaka data 확인 두번째 해지시 raterUnused 이벤트 발생
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC6.PNG)
+
+### 단일 진입점
+
+gateway 단일 진입점을 통해 전체 서비스 메서드 조회 가능
+gateway port: 8088
+
+gateway의 application.yml
+```
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: customer
+          uri: http://localhost:8082
+          predicates:
+            - Path=/customers/**, 
+        - id: rate
+          uri: http://localhost:8083
+          predicates:
+            - Path=/raters/**, 
+        - id: billing
+          uri: http://localhost:8084
+          predicates:
+            - Path=/billings/**, 
+        - id: settlement
+          uri: http://localhost:8085
+          predicates:
+            - Path=/settlements/**, 
+        - id: my page
+          uri: http://localhost:8086
+          predicates:
+            - Path=, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+```
+
+1.공통 요청시 고객팀, 빌링팀, 과금팀 데이터 생성
+
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC2.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%B3%B4%EC%83%81%EC%B2%98%EB%A6%AC3.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/gateway.PNG)
+
+2.kafka 이벤트를 통해 각각 접근 가능
+![image](https://github.com/newbietop/bssiot/blob/main/kafka.PNG)
+
+### 분산 데이터 프로젝션-CQRS
+
+
+
+## 클라우드 배포 - container 운영
+
+
+
+
+
 
 
 
