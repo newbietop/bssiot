@@ -1,4 +1,4 @@
-# customer test
+# customer
 
 ## Running in local development environment
 
