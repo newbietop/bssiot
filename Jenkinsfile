@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REGISTRY = 'user04.azurecr.io'
-        SERVICES = 'customer,billing,rate,settlement' // fix your microservices
+        SERVICES = 'customer' // fix your microservices
         AKS_CLUSTER = 'user04-aks'
         RESOURCE_GROUP = 'user04-rsrcgrp'
         AKS_NAMESPACE = 'default'
