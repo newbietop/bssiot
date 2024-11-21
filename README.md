@@ -194,8 +194,161 @@ spring:
 
 
 ## 클라우드 배포 - container 운영
-test
-?
+
+### 도커라이징
+docker 로그인 및 docker image push
+![image](https://github.com/newbietop/bssiot/blob/main/docker%20%EB%9D%BC%EC%9D%B4%EC%A7%95.PNG)
+
+### 클러스터에 배포
+helm 설치
+![image](https://github.com/newbietop/bssiot/blob/main/helm%EC%84%A4%EC%B9%98%20%EB%B0%8F%20%ED%99%95%EC%9D%B8.PNG)
+
+### 서비스 기동
+gateway, rate, customer, billing, settlement 기동
+
+gateway통한 배포
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C%20%EC%95%B1%20%EB%B0%B0%ED%8F%AC-gateway.PNG)
+
+각 설정 확인
+
+customer
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C%20%EC%95%B1%20%EB%B0%B0%ED%8F%AC-customer.PNG)
+
+billing
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C%20%EC%95%B1%20%EB%B0%B0%ED%8F%AC-billing.PNG)
+
+rater
+![image](https://github.com/newbietop/bssiot/blob/main/%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C%20%EC%95%B1%20%EB%B0%B0%ED%8F%AC-raters.PNG)
+
+### CI-CD 설정을 위한 jenkins 세팅
+
+젠킨스 설정을 위한 VM 생성
+![image](https://github.com/newbietop/bssiot/blob/main/vm%20%EC%84%A4%EC%A0%95.PNG)
+vm 설정을 통해 계정 생성
+
+vm에 젠킨스 설치
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%A0%A0%ED%82%A8%EC%8A%A4%20%EC%84%A4%EC%B9%98.PNG)
+
+젠킨스 ip로 접속하여 로그인
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%A0%A0%ED%82%A8%EC%8A%A4%20%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.PNG)
+
+젠킨스 파일 설정을 통한 CI-CD 구현
+1.jenkinsFile
+```
+pipeline {
+    agent any
+
+    environment {
+        REGISTRY = 'user04.azurecr.io'
+        SERVICES = 'customer' // fix your microservices
+        AKS_CLUSTER = 'user04-aks'
+        RESOURCE_GROUP = 'user04-rsrcgrp'
+        AKS_NAMESPACE = 'default'
+        AZURE_CREDENTIALS_ID = 'Azure-Cred'
+        TENANT_ID = '29d166ad-94ec-45cb-9f65-561c038e1c7a' 
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Deploy Services') {
+            steps {
+                script {
+                    def services = SERVICES.tokenize(',') // Use tokenize to split the string into a list
+                    for (int i = 0; i < services.size(); i++) {
+                        def service = services[i] // Define service as a def to ensure serialization
+                        dir(service) {
+                            stage("Maven Build - ${service}") {
+                                withMaven(maven: 'Maven') {
+                                    sh 'mvn package -DskipTests'
+                                }
+                            }
+
+                            stage("Docker Build - ${service}") {
+                                def image = docker.build("${REGISTRY}/${service}:v${env.BUILD_NUMBER}")
+                            }
+
+                            stage('Azure Login') {
+                                withCredentials([usernamePassword(credentialsId: env.AZURE_CREDENTIALS_ID, usernameVariable: 'AZURE_CLIENT_ID', passwordVariable: 'AZURE_CLIENT_SECRET')]) {
+                                    sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant ${TENANT_ID}'
+                                }
+                            }
+
+                            stage("Push to ACR - ${service}") {
+                                sh "az acr login --name ${REGISTRY.split('\\.')[0]}"
+                                sh "docker push ${REGISTRY}/${service}:v${env.BUILD_NUMBER}"
+                            }
+
+                            stage("Deploy to AKS - ${service}") {
+                                
+                                sh "az aks get-credentials --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER}"
+
+                                sh 'pwd'
+                                
+                                sh """
+                                sed 's/latest/v${env.BUILD_ID}/g' kubernetes/deployment.yaml > output.yaml
+                                cat output.yaml
+                                kubectl apply -f output.yaml
+                                kubectl apply -f kubernetes/service.yaml
+                                rm output.yaml
+                                """
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('CleanUp Images') {
+            steps {
+                script {
+                    def services = SERVICES.tokenize(',') 
+                    for (int i = 0; i < services.size(); i++) {
+                        def service = services[i] 
+                        sh "docker rmi ${REGISTRY}/${service}:v${env.BUILD_NUMBER}"
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+2.customer쪽 정합성을 위한 image url 설정
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+  labels:
+    app: customer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer
+  template:
+    metadata:
+      labels:
+        app: customer
+    spec:
+      containers:
+        - name: customer
+          image: "user04.azurecr.io/customer:latest"
+```
+
+3.배포 전  pod 상태 확인
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%9E%90%EB%8F%99%EB%B0%B0%ED%8F%AC%EC%A0%84.PNG)
+
+4.배포 후 jenkins 자동 빌드 확인 및 자동 배포 확인
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%9E%90%EB%8F%99%EB%B9%8C%EB%93%9C%20%ED%99%95%EC%9D%B8.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%9E%90%EB%8F%99%EB%B0%B0%ED%8F%AC%ED%9B%84.PNG)
+
+
 
 
 
