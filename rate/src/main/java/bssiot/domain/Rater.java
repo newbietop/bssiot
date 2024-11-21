@@ -69,8 +69,15 @@ public class Rater {
     public static void orderChagned(OrderCancel orderCancel) {
 
          repository().findById(orderCancel.getId()).ifPresent(rater->{
-                rater.setUseYn("N");
-                repository().save(rater);
+                if(rater.getUseYn().equals("Y")){
+                    rater.setUseYn("N");
+                    repository().save(rater);
+                }else{
+
+                    RaterUnused raterUnused = new RaterUnused(rater);
+                    raterUnused.setId(rater.getId()); 
+                    raterUnused.publishAfterCommit();
+                }
          });
 
     }

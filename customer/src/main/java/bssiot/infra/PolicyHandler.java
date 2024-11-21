@@ -23,5 +23,21 @@ public class PolicyHandler {
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
 
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='RaterUnused'"
+    )
+    public void wheneverRaterUnused_CancelAgain(
+        @Payload RaterUnused raterUnused
+    ) {
+        RaterUnused event = raterUnused;
+        System.out.println(
+            "\n\n##### listener CancelAgain : " + raterUnused + "\n\n"
+        );
+
+        // Sample Logic //
+        Customer.cancelAgain(event);
+    }
+
 }
 //>>> Clean Arch / Inbound Adaptor

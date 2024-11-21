@@ -62,6 +62,18 @@ public class Customer {
 
     }
 
+    public static void cancelAgain(RaterUnused raterUnused){
+    
+        repository().findById(raterUnused.getId()).ifPresent(customer ->{
+            
+            customer.setSvcContStatus("이미 해지됨");
+            repository().save(customer);
+        });
+        
+    }
+
+       
+
     //>>> Clean Arch / Port Method
 }
 //>>> DDD / Aggregate Root
