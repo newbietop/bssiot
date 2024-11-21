@@ -12,7 +12,7 @@ environment {
     GIT_USER_EMAIL = 'qkrfowns45@gmail.com'
     GITHUB_CREDENTIALS_ID = 'Github-Cred'
     GITHUB_REPO = 'https://github.com/newbietop/bssiot.git'
-    GITHUB_BRANCH = 'main' // 업로드할 브랜치
+    GITHUB_BRANCH = 'master' // 업로드할 브랜치
 }
 
 stages {
