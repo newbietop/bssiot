@@ -357,23 +357,27 @@ istio 설치 및 세팅
 bssiot 서비스 모니터링을 위한 namespace설정 및 pod 기동
 ![image](https://github.com/newbietop/bssiot/blob/main/KakaoTalk_20241122_010812386_05.png)
 
-그러나 kafka까지 올릴려 했으나 커넥션이 잘 안돼 pod기동 실패
-![image](https://github.com/newbietop/bssiot/blob/main/namespace.PNG)
+kiali화면 gateway로 customer 생성 후
+![image](https://github.com/newbietop/bssiot/blob/main/kiali%20%EB%A1%9C%EA%B7%B8.PNG)
 
 실제 kiali와 JaegerUI 화면
-![image](https://github.com/newbietop/bssiot/blob/main/bssiot%20kiali%ED%99%94%EB%A9%B4.PNG)
-![image](https://github.com/newbietop/bssiot/blob/main/KakaoTalk_20241122_010812386.png)
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%98%88%EA%B1%B0%20%EC%B0%90.PNG)
 
 ### 모니터링을 위한 프로메테우스 그라파나 설치
-프로메테우스 - 실제 pod들이 계속 안떠서 테스트 실패
+프로메테우스 
 ![image](https://github.com/newbietop/bssiot/blob/main/%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4%201.PNG)
 ![image](https://github.com/newbietop/bssiot/blob/main/%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4%202.PNG)
 ![image](https://github.com/newbietop/bssiot/blob/main/%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4%20%EC%84%A4%EC%B9%98.PNG)
 ![image](https://github.com/newbietop/bssiot/blob/main/%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4%20%ED%99%94%EB%A9%B4.PNG)
 
+실제 pod 성공 후 프로메테우스 deploy 사진
+![image](https://github.com/newbietop/bssiot/blob/main/%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4%20%EB%94%94%ED%94%8C%EB%A1%9C%EC%9D%B4.PNG)
+
 그라파나 화면
 ![image](https://github.com/newbietop/bssiot/blob/main/%EA%B7%B8%EB%9D%BC%ED%8C%8C%EB%82%98%20%EA%B8%B0%EB%8F%99.PNG)
 
+실제 pod 성공 후 프로메테우스 그라파나 사진
+![image](https://github.com/newbietop/bssiot/blob/main/%EA%B7%B8%EB%9D%BC%EB%82%98%EB%8B%A4%20%EC%BA%A1%EC%B3%90.PNG)
 
 ### 셀프 힐링
 
