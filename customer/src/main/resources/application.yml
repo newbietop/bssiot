@@ -8,6 +8,14 @@ spring:
 
 spring:
   profiles: default
+  kafka:
+    bootstrap-servers: my-kafka.bssiot.svc.cluster.local:9092
+    consumer:
+      group-id: customer-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
   jpa:
     properties:
       hibernate:
@@ -80,5 +88,7 @@ spring:
         event-out:
           destination: bssiot
           contentType: application/json
+          
+
 
 
