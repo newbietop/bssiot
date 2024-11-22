@@ -388,6 +388,17 @@ bssiot 서비스 모니터링을 위한 namespace설정 및 pod 기동
 ![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%203.PNG)
 ![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%204.PNG)
 
+### pvc 활용
 
+1.Pod 내에서 컨테이너들간 공유가능한 볼륨 유형 설정 및 생성(Empty Dir 생성)
+![image](https://github.com/newbietop/bssiot/blob/main/EmptyDir%20Volume.PNG)
 
+2.컨테이너가 바인딩된 워커노드의 /tmp 폴더를 공유하는 설정(Host Volume설정)
+![image](https://github.com/newbietop/bssiot/blob/main/HostPath%20Volume.PNG)
+
+3.pvc활용을 위한 마이크로서비스 배포
+![image](https://github.com/newbietop/bssiot/blob/main/pvc%20%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B0%B0%ED%8F%AC.PNG)
+
+4.실제 파일 공유 및 변경 가능한지 확인
+![image](https://github.com/newbietop/bssiot/blob/main/pvc%20%EB%A7%88%EC%A7%80%EB%A7%89.PNG)
 
