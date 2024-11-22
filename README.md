@@ -348,7 +348,20 @@ spec:
 ![image](https://github.com/newbietop/bssiot/blob/main/%EC%9E%90%EB%8F%99%EB%B9%8C%EB%93%9C%20%ED%99%95%EC%9D%B8.PNG)
 ![image](https://github.com/newbietop/bssiot/blob/main/%EC%9E%90%EB%8F%99%EB%B0%B0%ED%8F%AC%ED%9B%84.PNG)
 
+### istio설정
 
+istio 설치 및 세팅
+![image](https://github.com/newbietop/bssiot/blob/main/KakaoTalk_20241122_010812386_03.png)
+
+bssiot 서비스 모니터링을 위한 namespace설정 및 pod 기동
+![image](https://github.com/newbietop/bssiot/blob/main/KakaoTalk_20241122_010812386_05.png)
+
+그러나 kafka까지 올릴려 했으나 커넥션이 잘 안돼 pod기동 실패
+![image](https://github.com/newbietop/bssiot/blob/main/namespace.PNG)
+
+실제 kiali와 JaegerUI 화면
+![image](https://github.com/newbietop/bssiot/blob/main/bssiot%20kiali%ED%99%94%EB%A9%B4.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/KakaoTalk_20241122_010812386.png)
 
 
 
