@@ -375,6 +375,19 @@ bssiot 서비스 모니터링을 위한 namespace설정 및 pod 기동
 ![image](https://github.com/newbietop/bssiot/blob/main/%EA%B7%B8%EB%9D%BC%ED%8C%8C%EB%82%98%20%EA%B8%B0%EB%8F%99.PNG)
 
 
+### 셀프 힐링
+
+1.셀프 힐링(liveness) 설정파일
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%205.PNG)
+
+2.셀프 힐링 테스트를 위한 마이크로 서비스 배포
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%201.PNG)
+
+3.Order Liveness Probe를 명시적으로 Fail 상태로 전환
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%812.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%203.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%85%80%ED%94%84%ED%9E%90%EB%A7%81%204.PNG)
+
 
 
 
