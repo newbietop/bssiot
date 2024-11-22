@@ -18,24 +18,5 @@ spec:
       containers:
         - name: customer
           image: "newbietop/customer:1121"
-          env:
-          - name: KAFKA_BROKER
-            value: "my-kafka.bssiot.svc.cluster.local:9092"
           ports:
             - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 30
-            timeoutSeconds: 5
-            periodSeconds: 10
-            failureThreshold: 10
-          livenessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 120
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 5

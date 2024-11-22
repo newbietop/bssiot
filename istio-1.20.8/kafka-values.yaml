@@ -213,8 +213,6 @@ listeners:
   advertisedListeners: ""
   securityProtocolMap: ""
 
-advertised.listeners: PLAINTEXT://my-kafka.bssiot.svc.cluster.local:9092
-
 ## @section Kafka SASL parameters
 ## Kafka SASL settings for authentication, required if SASL_PLAINTEXT or SASL_SSL listeners are configured
 ##
