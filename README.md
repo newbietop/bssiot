@@ -227,7 +227,7 @@ rater
 ![image](https://github.com/newbietop/bssiot/blob/main/vm%20%EC%84%A4%EC%A0%95.PNG)
 vm 설정을 통해 계정 생성
 
-vm에 젠킨스 설치
+젠킨스 설치
 ![image](https://github.com/newbietop/bssiot/blob/main/%EC%A0%A0%ED%82%A8%EC%8A%A4%20%EC%84%A4%EC%B9%98.PNG)
 
 젠킨스 ip로 접속하여 로그인
