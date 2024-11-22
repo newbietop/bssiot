@@ -32,7 +32,7 @@ www.msaez.io/#/188553381/storming/bssiot-prj
 ## 이벤트 스토밍 
 
 완성된 모형
-![image](https://github.com/newbietop/bssiot/blob/main/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EC%8A%A4%ED%86%A0%EB%B0%8D1.PNG)
+![image](https://github.com/newbietop/bssiot/blob/main/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EC%8A%A4%ED%86%A0%EB%B0%8D3.PNG)
 
 모형 검증
 1. 고객이 개통을 하면 rate팀과 billing팀에도 신규 info정보가 생성되는가?(ok)
